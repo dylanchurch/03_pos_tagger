@@ -49,11 +49,12 @@ def create_model(sentences):
 
     for word in majority_tag_counts:
         max=0
-        for tag in word:
+        tag_max="NN"
+        for tag in majority_tag_counts[word]:
             if majority_tag_counts[word][tag]>max:
-                max=majority_tag_counts
-                tag_max=tag
-        majority_baseline[word]=tag#Assign tag to majority baseline
+                max=majority_tag_counts[word][tag]#Reasign max
+                tag_max=tag#Reassign tag_max
+        majority_baseline[word]=tag_max#Assign tag to majority baseline
 
     ## You can modify the return value if you want to
     return priors, likelihoods, majority_baseline, tag_counts
